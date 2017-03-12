@@ -1,0 +1,14 @@
+Given the following real-world information, conceive a data structure appropriate to represent each within software:
+
+Pixels on a computer screen.
+
+Class screen
+Screen has width, height attributes
+Screen has many pixels at x and y coordinates (int)
+
+Class pixel
+Pixel has red, green, and blue color values (ints), all must be greater than 0, less than 255
+If value is less than 0, return 0
+If value is greater than 255, return 255
+
+Should be two separate classes for screens and pixels that validate coordinates and colors and make those variables universally accessible if they are valid.

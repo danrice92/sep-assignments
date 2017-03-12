@@ -1,0 +1,9 @@
+Use the line_spec.rb spec file and line.rb skeleton file to help create your class.
+
+-The overall class is the line itself
+-A collection of members/people waiting in line, each with a string name
+-Front and back to the line
+-When you get in line, you start in the back
+-If someone leaves the line, everyone else moves forward one space.
+
+Makes most sense as an array because if the line needs to have a front and back it can easily be numbered and organized. Also, each person in line does not need any other attributes.

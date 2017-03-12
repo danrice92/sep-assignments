@@ -1,0 +1,19 @@
+Provide written answers for each which support your design choices and put them in intro-answers.txt:
+
+How does your data structure allow developers to access and manipulate the data?
+If a developer wanted to find a specific element in your data structure, how would you search for it?
+What other real-world data can each structure represent?
+
+Answers
+
+Line
+-The line works like an array and needs to get larger when someone goes to the end of the line and smaller when someone leaves the line.
+-Therefore, each person in the line is accessible by referring to their spot in the array, and the line provides methods to add and remove people from the array that properly adjust the length of the array.
+-People in line can also be searched by name to check if they are still in line.
+-This data structure can represent any type of data where elements can only be added to the end of the array and once an element is taken out of the array, it is completely removed from it. A good example of this is inventory at a business that practices First In, First Out.
+
+Screen and Pixel
+-Pixels are first generated with red, green, and blue color variables. If the given values for the colors are invalid, the pixel class instead returns the lowest or highest possible value.
+-Once a pixel's color is generated, it can then be inserted into a screen class at X and Y coordinates provided when the insert method is called. The screen class has width and height values upon initialization which it uses to test if the pixel can be placed on the screen, and returns nil if either the X coordinate, the Y coordinate, or both for the pixel do not have a matching coordinate on the screen.
+-A user can search for a pixel on the screen based on its coordinates using the at method.
+-This data structure provides access to a class that contains many other classes. It could be effectively used for elements of a group that have many attributes. One example is keeping a list of employees in a company, replacing the Pixel class with an Employee class and the Screen class with a Rank class. The Employee class would initialize with the employee's name, tenure with the company, and performance metrics, and they could be added to the Rank class with their job title. The Rank class would be initialized with the current total number of employees at the company.
