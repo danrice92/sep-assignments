@@ -1,0 +1,1 @@
+All stack specs pass using the shovel, delete, last, and length attributes of an array to add and remove elements (not using pop or push).

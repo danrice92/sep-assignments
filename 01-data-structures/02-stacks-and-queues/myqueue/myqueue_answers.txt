@@ -1,0 +1,1 @@
+Queue specs pass using insert, delete, last, and length attributes of an array without push or pop.
