@@ -1,4 +1,5 @@
 require_relative 'node'
+require 'benchmark'
 
 class LinkedList
   attr_accessor :head
@@ -9,9 +10,7 @@ class LinkedList
     current = @head
     if (@head == nil) && (@tail == nil)
       @head = node
-      @head.next = nil
       @tail = node
-      @tail.next = nil
     else
       while current.next != nil
         current = current.next
@@ -91,4 +90,5 @@ class LinkedList
       @head = @head.next
     end
   end
+
 end
