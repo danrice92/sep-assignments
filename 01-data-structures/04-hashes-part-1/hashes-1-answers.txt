@@ -1,0 +1,15 @@
+2. Written Assignment, write your answers in hashes-1-answers.txt
+
+Explain why doubling the size of the underlying array of your HashClass may be a poor idea.
+Hints:
+
+Doubling the size of the area increased the number of open slots in the array for potential values which may lead to more fragmentation.
+Doubling the size of an array (allocating memory) is a slow operation.
+Please consult this table and the code sample below for this assignment. Use the provided hash code for each key.
+
+
+Answer:
+
+Doubling the size of an array is probably fine when the array is rather small- going from six to twelve slots, for example. However, as the checkpoint suggested, arrays can become incredibly large, which would result in the array eating up all the memory on your computer, which would then make the computer slow to a crawl.
+
+Therefore, I take it that it is best to avoid collisions and doubling the array size whenever possible to maximize performance- which, I take it, is what the next checkpoint is about!
