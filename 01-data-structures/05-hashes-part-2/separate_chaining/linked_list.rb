@@ -27,4 +27,5 @@ class LinkedList
   # This method removes and returns the first node in the Linked List and must set Linked List's head to the second node.
   def remove_front
   end
+  #test
 end
