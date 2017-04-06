@@ -5,7 +5,7 @@ class HashClass
   def initialize(size)
     @items = Array.new(size)
   end
-  
+
 # Add a new object
   def []=(key, value)
     if @items[index(key, @items.length)] == nil
