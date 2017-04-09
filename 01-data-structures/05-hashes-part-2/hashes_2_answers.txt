@@ -1,0 +1,31 @@
+The def status method in Separate Chaining printed this when given the six Star Wars movies:
+
+Load factor: 0.5, number of items in hash: 6.0
+Key: Star Wars: The Empire Strikes Back, Value: Number Five
+Key: Star Wars: Attack of the Clones, Value: Number Two
+Key: Star Wars: Return of the Jedi, Value: Number Six
+Key: Star Wars: A New Hope, Value: Number Four
+Key: Star Wars: The Phantom Menace, Value: Number One
+Key: Star Wars: Revenge of the Sith, Value: Number Three
+
+In Open Addressing's `status` method I get this:
+
+Number of items in hash: 6.0
+Key: Star Wars: The Empire Strikes Back, Value: Number Five, Point in Array: 2
+Key: Star Wars: Attack of the Clones, Value: Number Two, Point in Array: 3
+Key: Star Wars: A New Hope, Value: Number Four, Point in Array: 4
+Key: Star Wars: Return of the Jedi, Value: Number Six, Point in Array: 3
+Key: Star Wars: The Phantom Menace, Value: Number One, Point in Array: 6
+Key: Star Wars: Revenge of the Sith, Value: Number Three, Point in Array: 11
+
+There are several different ways to manage collisions in hashes.
+
+One example is double hashing, which functions similarly to open addressing and cuckoo hashing. It starts by selecting an index based on a given key and the size of the array using the modulo operator. If that index is unoccupied, it places the element at that point in the array. If it is occupied, it takes the modulus of the given key and the first index in the array, and subtracts that from the first index, to select a second index. It would continue doing this until it runs out of options and resizes.
+
+Another is coalesced hashing, which is a hybrid of separate chaining and open addressing. It attempts to avoid resizing the given array by either placing new elements in an unoccupied part of the array or adding them to the tail of one of the existing linked lists upon collision.
+
+A final possible option is hopscotch hashing, which handles collisions by trying to push the new element to a nearby location rather than a location that is farther away in the array. It does this by determining if the nearest open space is several slots away or close by. If it is close by, it simply places the element there; if it is far away, it pushes closer elements into those slots and moves the new element into a nearer slot.
+
+One option I could imagine for how to manage hash collisions is to store an openSpot variable at the beginning of the array (it would be initialized at 0) that denotes that that point in the array is currently open. When a new node is placed in the array, it is placed in its index (key.sum % size) if that place in the array is empty. If it is not, the array immediately places it at openSpot. Then openSpot immediately calls a next_open_index-like function to find the next available space in the array for it to go to. If openSpot runs out of open spots, it resizes the hash.
+
+I think this would help avoid the Open Addressing clustering issue I read about with coalesced hashing because it would place elements more uniformly throughout the array, and also avoid the load factor problems separate chaining sometimes has... Although I can imagine a worst case scenario where many elements don't have any collisions, leaving openSpot at index 0 or early in the array, and when a collision finally occurs, it takes openSpot a long time to hunt for a new open spot in the array.
