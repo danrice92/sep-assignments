@@ -1,0 +1,55 @@
+Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
+
+Binary Search Tree and Min Binary Heap are organized very differently. With my list of 12 movies (with some slightly altered Rotten Tomatoes scores so no scores were exactly the same), Binary Search Tree prints the following (with the row numbers added by me for clarification):
+
+row 1:
+Harry Potter and the Sorcerer's Stone: 80
+row 2:
+Harry Potter and the Order of the Phoenix: 78
+Harry Potter and the Chamber of Secrets: 82
+row 3:
+Fantastic Beasts and Where to Find Them: 73
+Harry Potter and the Deathly Hallows Part 1: 79
+Harry Potter and the Prisoner of Azkaban: 91
+row 4:
+Cloud Atlas: 66
+Harry Potter and the Goblet of Fire: 88
+Harry Potter and the Deathly Hallows Part 2: 96
+row 5:
+V for Vendetta: 72
+Harry Potter and the Half-Blood Prince: 84
+row 6:
+The Matrix, 87
+
+Binary Search Tree simply compares the root with the node once and then makes a decision on whether to send the node left or right from that point. Therefore, finding an individual node in the tree is fairly easy because if a current node value is compared to the value of the node being searched for, one can always know whether to go left or right from that point.
+
+However, as this tree shows, since Binary Search Tree does not reorganize nodes that are already in the tree, many rows are not completely filled before insertion starts on the next row. In fact, every row in the tree except the first two has at least one empty spot. This makes for the possibility of a lot of empty spaces and a lot of iterations to find a single element in a very large data set.
+
+Additionally, it is very easy for a Binary Search Tree to be heavily skewed one direction or the other depending on the root value. In this instance, since I started with Sorcerer's Stone, which has a fairly average Rotten Tomatoes score for the data set, there's a reasonable balance between left and right values. However, if Deathly Hallows Part 2 or Cloud Atlas had been the root, all of the following nodes would have either been on the left or the right.
+
+Meanwhile, my Min Binary Heap class printed the following (again, with rows added for clarity):
+
+row 1:
+Cloud Atlas: 66
+row 2:
+Fantastic Beasts and Where to Find Them: 73
+V for Vendetta: 72
+row 3:
+Harry Potter and the Order of the Phoenix: 78
+The Matrix: 87
+Harry Potter and the Sorcerer's Stone: 80
+Harry Potter and the Deathly Hallows Part 1: 79
+row 4:
+Harry Potter and the Chamber of Secrets: 82
+Harry Potter and the Prisoner of Azkaban: 91
+Harry Potter and the Half-Blood Prince: 84
+Harry Potter and the Goblet of Fire: 88
+Harry Potter and the Deathly Hallows Part 2: 96
+
+As intended, Min Binary Heap is organized so the smallest value (in this case, the Rotten Tomatoes rating for Cloud Atlas) is in the first row, with each successive row having slightly larger values overall.
+
+However, while Min Binary Heap is guaranteed to have the very lowest value at the top of the heap, it is not guaranteed that all of the values beneath it are perfectly organized. We see this beginning in rows 3 and 4, where Chamber of Secrets has a lower score than The Matrix, but wound up farther down on the tree because the heap prioritizes filling every row over sorting them all perfectly. Otherwise, it would take even longer to swap around values every time there's an insertion in the data structure.
+
+In the case of Min Binary Heap, we can always know that an individual node's children will both have higher ratings than it does, but we can't know that we are working with the smallest rating in the heap with the exception of the root. This means it takes longer to search through a binary heap in most cases, but we can always know that between a given node, node.left, and node.right, node has the lowest heap value of the three.
+
+For my personal search tree and heap data structures, I found that insertion was 4 times faster in the heap than in the tree (3 seconds versus 12 to insert 10,000 elements). Both were fairly similar for deletion and finding an element. I think in my case this might be because my Min Binary Heap was written a bit better, because in each iteration, there is one less "if" statement to check in Min Binary Heap's #insert method than in Binary Search Tree's, and in large data sets, I suspect the heap has to iterate less frequently. It seems as though storing data sets in a Heap is better but recovering them in a Tree is better.
