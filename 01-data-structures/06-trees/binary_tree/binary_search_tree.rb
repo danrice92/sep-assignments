@@ -134,6 +134,6 @@ class BinarySearchTree
 
   # 12.65 seconds for insertion of 10,000 elements
   # .001 seconds to find the number 5000
-  
+
   numberTree.printf
 end
