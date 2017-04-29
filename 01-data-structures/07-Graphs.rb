@@ -41,7 +41,7 @@ class Actor
         else
           currentActor.checked = true
           film.cast.each do |actor|
-            if actor != currentActor && actor.checked == false
+            if actor.checked == false
               actor.find_kevin_bacon(films, currentActor=actor)
             end
           end
@@ -110,6 +110,5 @@ Harry_Potter_and_the_Goblet_of_Fire = Film.new("Harry Potter and the Goblet of F
 Daniel_Radcliffe.add_to_film(Harry_Potter_and_the_Goblet_of_Fire)
 Emma_Watson.add_to_film(Harry_Potter_and_the_Goblet_of_Fire)
 Brendan_Gleeson.add_to_film(Harry_Potter_and_the_Goblet_of_Fire)
-
 
 Brendan_Gleeson.find_kevin_bacon

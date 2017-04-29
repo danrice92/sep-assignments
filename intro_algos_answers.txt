@@ -1,0 +1,290 @@
+TipCalculation
+  IF Waiter did a good job THEN
+    Tip = (Bill * .2).RoundUp
+    WriteTip
+    Total = Bill + Tip
+    WriteTotal
+  ELSE IF Waiter did a bad job THEN
+    Tip = (Bill * .2).RoundDown
+    WriteTip
+    Total = Bill + Tip
+    WriteTotal
+  ELSE IF Waiter called me an insulting name OR Waiter burned down the building THEN
+    Total = Bill
+    WriteTotal
+  END IF
+END TipCalculation
+
+DecideWhatToWear(TypeOfDay)
+  SET TodaysBoxers to PairOnTopOfPile
+  SET TodaysSocks to NearestPair
+  IF JeansOnFloor look clean AND are in good condition THEN
+    SET TodaysJeans to JeansOnFloor
+  ELSE
+    REMOVE Belt from JeansOnFloor
+    ASSIGN JeansOnFloor to Hamper
+    SET TodaysJeans to JeansHangingOnFarLeft
+    ASSIGN Belt to TodaysJeans
+  END IF
+  IF TypeOfDay == MorningShift THEN
+    SET TodaysShirt to WorkShirtHangingOnFarLeft
+  ELSE
+    SET TodaysShirt to ShirtHangingOnFarLeft
+    IF TodaysShirt.Type == ButtonUp THEN
+      SET TodaysUnderShirt to ShirtOnTopOfPile
+    END IF
+    IF TypeOfDay != DayOff
+      ASSIGN WorkShirtHangingOnFarLeft to Bag
+    END IF
+  END IF
+  SET TodaysGlasses to Glasses
+  IF Glasses are dirty THEN
+    Clean Glasses
+  END IF
+  SET TodaysWatch to Watch
+END DecideWhatToWear
+
+NoWorkoutMorningRoutine(TypeOfDay)
+  PrepareCoffee
+  GoToBathroom
+  SET Shower.Dial to On
+  WHILE Shower.Temperature == Cold
+    BrushTeeth
+  END WHILE
+  Shower
+  SET Shower.Dial to Off
+  IF Hairiness >= 3 AND TypeOfDay != MorningShift THEN
+    ShaveFace
+    Hairiness = 0
+  END IF
+  DecideWhatToWear(TypeOfDay)
+  EatBreakfast
+END NoWorkoutMorningRoutine
+
+WorkoutMorningRoutine(TypeOfDay)
+  GoToGym
+  DoExerciseThings
+  GoBackToApartment
+  PrepareCoffee
+  GoToBathroom
+  SET Shower.Dial to On
+  WHILE Shower.Temperature == Cold
+    BrushTeeth
+  END WHILE
+  Shower
+  SET Shower.Dial to Off
+  IF Hairiness >= 3 THEN
+    ShaveFace
+    Hairiness = 0
+  END IF
+  DecideWhatToWear(TypeOfDay)
+  EatBreakfast
+END WorkoutMorningRoutine
+
+GetReadyToGoToWork
+  PutPhoneKeysAndWalletInPockets
+  PutTabletAndEarphonesInBag
+  PutBagOnShoulder
+  LockFrontDoor
+  GetInCar
+End GetReadyToGoToWork
+
+DriveToWork
+  IF GoodMood == True AND FeelingLikeAudiobook == True THEN
+    ListenToAudiobook
+  ELSE IF GoodMood == True AND FeelingLikePodcast == True THEN
+    ListenToPodcast
+  ELSE IF GoodMood == False THEN
+    ListenToAngryPunkMusic
+  END IF
+END DriveToWork
+
+DriveHome
+  IF DayQuality == Good AND FeelingLikeAudiobook == True THEN
+    ListenToAudiobook
+  ELSE IF DayQuality == Good AND FeelingLikePodcast == True THEN
+    ListenToPodcast
+  ELSE IF DayQuality == Bad THEN
+    ListenToAngryPunkMusic
+  END IF
+  IF ItsThe25thOfTheMonth == True OR FianceeIsHavingABadDay == True THEN
+    GetFianceeFlowers AND OR Chocolate AND OR IceCream
+  END IF
+END DriveHome
+
+Work
+  SalesToday = 0
+  IrritationsToday = 0
+  WHILE Working == True
+    IF Customers.InStore == true THEN
+      IF CurrentCustomer.HereToActivateBusinessService == True THEN
+        SellServiceToCustomer
+        SalesToday += 3
+      IF CurrentCustomer.HereToActivatePersonalService == True THEN
+        SellServiceToCustomer
+        SalesToday += 2
+      ELSE IF CurrentCustomer.HereToBuyPhones == True THEN
+        SellPhoneToCustomer
+        SalesToday += 1
+      ELSE IF CurrentCustomer.Angry == True THEN
+        CalmCustomerDown
+        IF EffortsWork THEN
+          IrritationsToday += 1
+        ELSE IF EffortsAreInVain THEN
+          IrritationsToday += 2
+        END IF
+      ELSE IF CurrentCustomer.DoesntKnowHowToBackUpPhotos == True THEN
+        ShowCustomerHow
+        IrritationsToday += 2
+      ELSE IF MeetingToday == True THEN
+        IrritationsToday += 3
+      END IF
+    ELSE
+      TalkToCoworkers
+    END IF
+  END WHILE
+  WHILE LunchTime == True
+    GetFoodFromGroceryStore
+    ReturnToWork
+    EatFood
+    IF WatchingAGoodShow == True THEN
+      WatchShow
+    ELSE IF FeelingLikeAudioBook == True THEN
+      ListenToAudiobook
+    ELSE IF FeelingLikePodcast == True THEN
+      ListenToPodcast
+    ELSE
+      PlayGame
+    END IF
+  END WHILE
+  IF SalesToday >= IrritationsToday
+    SET DayQuality to Good
+  ELSE
+    SET DayQuality to Bad
+  END IF
+END Work
+
+CodeOrWrite
+  IF HaventSubmittedAnythingInAwhile == True THEN
+    WriteCode
+  ELSE IF FeelingLikeWriting == True THEN
+    WriteBlog
+  ELSE
+    WriteCode
+  END IF
+End CodeOrWrite
+
+WhatToDoWithDay
+  WHILE Alarm.ringing == False
+    SET Me.Conscious to False
+    Hairiness += 1
+  END WHILE
+  IF Alarm.ringing == True THEN
+    SET Me.Conscious to True
+    SET Alarm.ringing to False
+  END IF
+  IF WorkSchedule == MorningShift THEN
+    NoWorkoutMorningRoutine(WorkSchedule)
+    GetReadyToGoToWork
+    DriveToWork
+    Work
+    DriveHome(DayQuality)
+    EatDinner
+    IF HaventSubmittedAnythingInAwhile == True THEN
+      WriteCode
+    ELSE
+      WatchMovieOrTVWithFiancee
+    END IF
+    GoToBed
+  ELSE IF (WorkSchedule == MidShift OR ClosingShift) AND HaveMentorMeeting == True THEN
+    NoWorkoutMorningRoutine(WorkSchedule)
+    HaveMentorMeeting
+    GetReadyToGoToWork
+    DriveToWork
+    Work
+    DriveHome(DayQuality)
+    EatDinner
+    UNLESS WorkSchedule == ClosingShift
+      WatchMovieOrTVWithFiancee
+    END UNLESS
+    GoToBed
+  ELSE IF (WorkSchedule == MidShift OR ClosingShift) AND HaveMentorMeeting == False AND BeingLazy == True THEN
+    NoWorkoutMorningRoutine(WorkSchedule)
+    CheckFinances
+    CodeOrWrite
+    GetReadyToGoToWork
+    DrivetoWork
+    Work
+    DriveHome(DayQuality)
+    EatDinner
+    UNLESS WorkSchedule == ClosingShift
+      WatchMovieOrTVWithFiancee
+    END UNLESS
+    GoToBed
+  ELSE IF (WorkSchedule == MidShift OR ClosingShift) AND HaveMentorMeeting == False AND BeingLazy == False THEN
+    WorkoutMorningRoutine(WorkSchedule)
+    CheckFinances
+    CodeOrWrite
+    GetReadyToGoToWork
+    DriveToWork
+    Work
+    DriveHome(DayQuality)
+    EatDinner
+    IF DayQuality == Good THEN
+      ReadABookOrMediumArticles
+    ELSE
+      WatchMovieOrTVWithFiancee
+    END IF
+    GoToBed
+  ELSE IF WorkSchedule == DayOff AND HaveMentorMeeting == True THEN
+    NoWorkoutMorningRoutine(WorkSchedule)
+    If LaundryIsDirty == True THEN
+      DoLaundry
+    END IF
+    CheckFinances
+    CheckOverCode
+    HaveMentorMeeting
+    CodeOrWrite
+    EatLunch
+    IF MeetupIsHappening == True THEN
+      AttendMeetup
+    END IF
+    ReadABookOrMediumArticles
+    CodeOrWriteAtCoffeeShop
+    EatDinner
+    WatchMovieOrTVWithFiancee
+    GoToBed
+  ELSE IF WorkSchedule == DayOff AND HaveMentorMeeting == False AND BeingLazy == False THEN
+    WorkoutMorningRoutine(WorkSchedule)
+    IF LaundryIsDirty == True THEN
+      DoLaundry
+    END IF
+    CheckFinances
+    CodeOrWrite
+    EatLunch
+    IF MeetupIsHappening == True THEN
+    AttendMeetup
+    END IF
+    ReadABookOrMediumArticles
+    CodeOrWriteAtCoffeeShop
+    EatDinner
+    WatchMovieOrTVWithFiancee
+    GoToBed
+  ELSE IF WorkSchedule == DayOFF AND HaveMentorMeeting == False AND BeingLazy == True THEN
+    NoWorkoutMorningRoutine(WorkSchedule)
+    IF LaundryIsDirty == True THEN
+      DoLaundry
+    END IF
+    PlayVideoGames
+    CheckSocialMediaNeedlessly
+    EatLunch
+    IF NoLongerLazy == True THEN
+      CodeOrWrite
+    ELSE 
+      PlayVideoGames
+    END IF
+    EatDinner
+    WatchMovieOrTVWithFiancee
+    GoToBed
+  END IF
+END WhatToDoWithDay
