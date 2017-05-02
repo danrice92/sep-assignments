@@ -15,4 +15,4 @@ def fib(n)
   end
 end
 
-puts fib(8)
+puts fib(30)
