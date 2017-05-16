@@ -1,0 +1,22 @@
+1. An algorithm that compares the speed at which humans can run would have Usain Bolt's speed as O(1), the best-case performance, whereas a baby that can barely run to begin with would likely be O(2^n), if we assume that the only humans accounted for are those who have fully-functioning legs.
+
+2. The best-case scenario for binary search is notated as Big-Omega in code, but more plainly, it simply means that the search function finds the element it needs in the first place it searches, so it doesn't have to cycle over and over again. In binary search, this means the element is right in the middle of the given data set.
+
+3. The worst-case scenario is notated as Big-O. In binary search, it would mean the algorithm finds the element it's searching for at one of the very last spot it checks. An example of this would be an element at the very beginning or very end of a data set in binary search, because these elements are farthest from the center.
+
+4. The bounded-case scenario is notated as Big-Theta. In binary search, this is essentially a "realistic" scenario that lands somewhere between the best and worst cases. It could be close to one or the other, but is most likely in the middle.
+
+6. 2^n is the asymptotic limit.
+
+7. The Big-O of an algorithm with the given data is 2^n performance. So when n is 3, the worst-case is 8 iterations, when n is 4, the worst-case is 16 iterations, and so on.
+
+8.
+def linearSearch(iterations)
+  return iterations
+end
+
+10. Big-O of binary search is O(logn). It's always faster than linear time but slower than constant time.
+
+11. Big-Ω of binary search is Ω(1) because if you're very lucky (in the case of large data sets), binary search can function at constant time. This assumes that the element you're searching for is found in the first iteration.
+
+12. Big-Ө of binary search is Ө(logn). In the vast majority of scenarios, binary search will be somewhere between Ω(1) and O(logn).
