@@ -6,9 +6,9 @@
 
 4. The bounded-case scenario is notated as Big-Theta. In binary search, this is essentially a "realistic" scenario that lands somewhere between the best and worst cases. It could be close to one or the other, but is most likely in the middle.
 
-6. 2^n is the asymptotic limit.
+6. 2^n is the function. The asymptotic limit is infinity because as n approaches infinity, so does the possible number of iterations.
 
-7. The Big-O of an algorithm with the given data is 2^n performance. So when n is 3, the worst-case is 8 iterations, when n is 4, the worst-case is 16 iterations, and so on.
+7. The Big-O of an algorithm with the data in the graph is 2^n performance. So when n is 3, the worst-case is 8 iterations, when n is 4, the worst-case is 16 iterations, and so on. If the constant, 2, is dropped or altered, however, the number of worst-case iterations can change dramatically, so it is ultimately (constant)^n performance.
 
 8.
 def linearSearch(iterations)
@@ -17,6 +17,6 @@ end
 
 10. Big-O of binary search is O(logn). It's always faster than linear time but slower than constant time.
 
-11. Big-Ω of binary search is Ω(1) because if you're very lucky (in the case of large data sets), binary search can function at constant time. This assumes that the element you're searching for is found in the first iteration.
+11. Big-Ω of binary search is Ω(1) because if you're very lucky (especially in the case of large data sets), binary search can function at constant time. This assumes that the element you're searching for is found in the first iteration.
 
 12. Big-Ө of binary search is Ө(logn). In the vast majority of scenarios, binary search will be somewhere between Ω(1) and O(logn).
