@@ -1,0 +1,11 @@
+1. Goodbye World has a Big-O of O(1), or constant time, because n is inserted into the string in constant time.
+
+2. The Big-O of find_largest is O(n), or linear performance, because the time the worst-case performance takes to find the correct element in the collection grows at a linear rate to the size of the collection.
+
+3. The Big-O of find_largest-2D_array is O(n), or linear performance. Just like find_largest, the method has to iterate through every single element given to it every time, meaning the size of the 2D array grows at a linear rate to the length of time the method takes to execute.
+
+4. The Big-O of numbers_recursive is roughly 2^n. As the number provided gets larger, the time it takes for the algorithm to be executed grows at an exponential rate.
+
+5. The Big-O of numbers_iterative appears to be around nlogn. Like numbers_recursive, the number of calculations that have to be done grow faster than the increasing size of n, but since it's iterative rather than recursive and the calculations are very simple, it should perform better than numbers_recursive.
+
+6. The Big-O of the quick sort algorithm is n^2. If the sides of the pivot value are extremely unbalanced throughout the entire method, it must run through most or all of the elements each time, which works out to n^2.
