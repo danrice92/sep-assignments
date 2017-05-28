@@ -1,0 +1,7 @@
+Find the Big-O of each version and write your work and solution in a file named improving-complexity-big-o.txt.
+
+1. Poorly_written_ruby and better_written_ruby perform right around O(n^2) in Big-O performance because if the elements are sorted in the first place, every time an element is inserted into the sorted array, it has to iterate through every previously-inserted element. Better_written_ruby performs slightly faster because it skips a couple of the loops, but still has to iterate through each element in the end in a Big-O scenario. Also, they're both basically insertion sort.
+
+2. Timely_ruby should perform around O(nlogn). Its performance is better in small data sets than poorly_written_ruby and better_written_ruby, but the difference is huge for large data sets because it continually skips half of the remaining array with each iteration.
+
+3. Space_conscious_ruby should perform around O(n^2) or slightly worse. In a sort of reversal of poorly_written_ruby and better_written_ruby, space_conscious_ruby must iterate through all of the elements not yet sorted before deleting them from the array and printing them out. In both cases, however, you wind up with a similar number of iterations.
