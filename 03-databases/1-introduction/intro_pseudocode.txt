@@ -3,102 +3,67 @@ Review the Codecademy Learn SQL course which you completed as pre-work.
 For each of these skills, write pseudo-code (like the post = Post.all.first example above) to demonstrate how your application might perform these tasks through an ORM. For each code sample, also write a corresponding SQL statement. Send the code samples and SQL statements to your mentor.
 
 1. Remove duplicates in a query response
-
 Pseudo code:
-uniqueNames = []
-user.name.each do |name|
-  uniqueNames.push(name) unless uniqueNames.include?(name)
-end
+IF UNIQUE
+  SELECT name FROM user;
 
 SQL statement:
 SELECT DISTINCT name FROM user;
 
 2. Filter records using inequalities, pattern matching, ranges, and boolean logic
-
 Pseudo code:
-comment.body.each do |body|
-  print body if body.first == 'a'
-end
+IF body.first IS 'a'
+  SELECT body FROM comment;
 
 SQL statement:
 SELECT * FROM comment WHERE body LIKE 'a%';
 
 3. Sort records in a particular order
-
 Pseudo code:
-comment.each do |comment|
-  print comment
-end
+SELECT ALL FROM comment
+  ORDER BY ASC id;
 
 SQL statement:
 SELECT * FROM comment ORDER BY id ASC;
 
 4. Limit the number of records returned
-
 Pseudo code:
-user.each do |user|
-  print user unless user.id >= 2
-end
+IF user.id LESS THAN 3
+  SELECT user
+  ORDER BY ASC id;
 
 SQL statement:
 SELECT * FROM user ORDER BY id ASC LIMIT 2;
 
 5. Group records into sections
-
 Pseudo code:
-user1 = 0
-user2 = 0
-user3 = 0
-comment.id.each do |id|
-  if id == 1
-    user1 += 1
-  elsif id == 2
-    user2 += 1
-  elsif id == 3
-    user3 += 1
-  end
-end
-
-print "#{user1, user2, user3}"
-
+SELECT user_id
+  COUNT ALL comment
+  GROUP BY user_id;
 
 SQL statement:
 SELECT user_id, COUNT(*) FROM comment
 GROUP BY user_id;
 
 6. Perform calculations using aggregate function
-
 Pseudo code:
-sum = 0
-comment.id.each do |number|
-  sum = sum + number
-end
-return sum
+SELECT id FROM comment
+CALCULATE SUM;
 
 SQL statement:
 SELECT SUM(id) FROM comment;
 
 7. Join tables using cross join, inner join, and outer join
-
 Pseudo code, cross join:
-user.name.each do |name|
-  post.body.each do |post|
-    comment.body.each do |comment|
-      puts "#{name, post, comment]}"
-    end
-  end
-end
+SELECT name FROM user, body FROM post, body FROM comment;
 
 SQL statement, cross join:
 SELECT user.name, post.body, comment.body FROM user, post, comment;
 
 Pseudo code, inner join:
-user.each do |user|
-  comment.each do |comment|
-    puts "#{user, comment}" if user.id == comment.user_id
-  end
-end
-
+SELECT ALL user
+IF comment.user_id IS user.id
+  JOIN WITH comment;
 
 SQL statement, inner join:
 SELECT
@@ -109,11 +74,11 @@ JOIN comment ON
   comment.user_id = user.id;
 
 Pseudo code, outer join:
-user.each do |user|
-  comment.each do |comment|
-    puts "#{user, comment}" if user.id == comment.user_id || puts "#{user, nil}" if user.id != comment.user_id
-  end
-end
+SELECT ALL user
+IF comment.user_id IS user.id
+  JOIN WITH comment
+ELSE
+  user;
 
 SQL statement, outer join:
 SELECT
