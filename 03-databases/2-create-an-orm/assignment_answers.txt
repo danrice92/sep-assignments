@@ -1,0 +1,31 @@
+1. What's a RubyGem and why would you use one?
+
+A gem in Ruby is either a full-fledged application or a library to supplement one built by Ruby developers. Technically, software in a Ruby gem could all be built from the ground up by one developer or team, but gems are generally used to avoid having to rewrite common code functionality (like being able to create and log into a user account). This is part of why Ruby on Rails apps are known for being easy to build and deploy quickly; there are many popular Ruby gems that developers use to get their applications up and running much faster.
+
+2. What's the difference between lazy and eager loading?
+
+Lazy loading only actually does calculations and initializes objects if it is required to. Eager loading does calculations and initializes objects in advance whether that content is specifically needed or not.
+
+3. What's the difference between the CREATE TABLE and INSERT INTO SQL statements?
+
+CREATE TABLE, well, creates a table in SQL. It accepts parameters that specify how many columns there are going to be (for example, in an address book table, one might create the table with a name, a "name" column, a "phone number" column, an "address" column, and an "email" column). INSERT INTO adds rows to an existing table. In the previous example, one would call INSERT INTO to add a contact to the address book ("Dan", "111-111-1111", "'Merica", "dan@email.com").
+
+4. What's the difference between extend and include? When would you use one or the other?
+
+"Extend" adds class methods to an object from a module, while "include" adds instance methods to an object from a module. If one wanted to change the functionality of the object class itself, one would use "extend". If one only wants to change an instance of that class, one would use "include."
+
+5. In persistence.rb, why do the save methods need to be instance (not class) methods?
+
+The save methods need to be instance methods because we're saving the database as an individual instance of Bloc Record (for example, the address book we made in address_bloc), not as a part of every instance of Bloc Record.
+
+6. Given the Jar-Jar Binks example earlier, what is the final SQL query in persistence.rb's save! method?
+
+UPDATE Character
+SET character_name = "Jar-Jar Binks", star_rating = "1"
+WHERE id = 1423435234;
+
+7. Write a Ruby method that converts snake_case to CamelCase using regular expressions.
+In snake_to_camel.rb.
+
+8. Add a select method which takes an attribute and value and searches for all records that match:
+In selection.rb in bloc_record.

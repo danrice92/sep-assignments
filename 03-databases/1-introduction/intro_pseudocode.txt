@@ -4,42 +4,35 @@ For each of these skills, write pseudo-code (like the post = Post.all.first exam
 
 1. Remove duplicates in a query response
 Pseudo code:
-IF UNIQUE
-  SELECT name FROM user;
+User.all.unique?
 
 SQL statement:
 SELECT DISTINCT name FROM user;
 
 2. Filter records using inequalities, pattern matching, ranges, and boolean logic
 Pseudo code:
-IF body.first IS 'a'
-  SELECT body FROM comment;
+Comment.all.starts_with('a')
 
 SQL statement:
 SELECT * FROM comment WHERE body LIKE 'a%';
 
 3. Sort records in a particular order
 Pseudo code:
-SELECT ALL FROM comment
-  ORDER BY ASC id;
+Comment.all.sort(id, asc)
 
 SQL statement:
 SELECT * FROM comment ORDER BY id ASC;
 
 4. Limit the number of records returned
 Pseudo code:
-IF user.id LESS THAN 3
-  SELECT user
-  ORDER BY ASC id;
+User.all.sort(id, asc, 2)
 
 SQL statement:
 SELECT * FROM user ORDER BY id ASC LIMIT 2;
 
 5. Group records into sections
 Pseudo code:
-SELECT user_id
-  COUNT ALL comment
-  GROUP BY user_id;
+Comment.all.group(user_id)
 
 SQL statement:
 SELECT user_id, COUNT(*) FROM comment
@@ -47,23 +40,22 @@ GROUP BY user_id;
 
 6. Perform calculations using aggregate function
 Pseudo code:
-SELECT id FROM comment
-CALCULATE SUM;
+Comment.all.add_up(id)
 
 SQL statement:
 SELECT SUM(id) FROM comment;
 
 7. Join tables using cross join, inner join, and outer join
 Pseudo code, cross join:
-SELECT name FROM user, body FROM post, body FROM comment;
+User.all.name
+Post.all.body
+Comment.all.body
 
 SQL statement, cross join:
 SELECT user.name, post.body, comment.body FROM user, post, comment;
 
 Pseudo code, inner join:
-SELECT ALL user
-IF comment.user_id IS user.id
-  JOIN WITH comment;
+User.all.id.join_on(Comment.all.user_id)
 
 SQL statement, inner join:
 SELECT
@@ -74,11 +66,7 @@ JOIN comment ON
   comment.user_id = user.id;
 
 Pseudo code, outer join:
-SELECT ALL user
-IF comment.user_id IS user.id
-  JOIN WITH comment
-ELSE
-  user;
+User.all.id.join_on(Comment.all.user_id)
 
 SQL statement, outer join:
 SELECT
